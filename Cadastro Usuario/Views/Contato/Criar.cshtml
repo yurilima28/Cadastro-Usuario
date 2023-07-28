@@ -1,4 +1,8 @@
-﻿<div class="text-center"> 
+﻿@{
+    ViewData["Title"] = "Criar contato";
+}
+
+<div class="text-center"> 
     <h1 class="display-4">
         Cadastrar Cliente
     </h1>
@@ -21,7 +25,7 @@
         
     </div>
 
-    <button type="submit" class="btn btn-primary">Adicionar</button>
-    <a class="btn btn-secondary" asp-controller="Contato" asp-action="Index" role="buton">Voltar</a>
+    <button type="submit" class="btn btn-primary btn-block">Adicionar</button>
+    <a class="btn btn-secondary btn-block" asp-controller="Contato" asp-action="Index" role="buton">Voltar</a>
     
 </form>
