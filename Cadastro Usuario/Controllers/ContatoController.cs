@@ -21,18 +21,39 @@ namespace Cadastro_Usuario.Controllers
         {
             return View();
         }
-        public IActionResult Editar()
+        public IActionResult Editar(int id)
         {
-            return View();
+           ContatoModel contato = _contatoRepositorio.ListarPorId(id);
+            return View(contato);
         }
-        public IActionResult ApagarConfirmacao()
+        public IActionResult ApagarConfirmacao(int id)
         {
-            return View();
+            ContatoModel contato = _contatoRepositorio.ListarPorId(id);
+            return View(contato);
         }
+
+        public IActionResult Apagar(int id)
+        {
+            _contatoRepositorio.Apagar(id);
+            return RedirectToAction("Index");
+        }
+
+
         [HttpPost]
         public IActionResult Criar(ContatoModel contato)
         { 
-            _contatoRepositorio.Adicionar(contato);
+            if(ModelState.IsValid)
+            {
+                _contatoRepositorio.Adicionar(contato);
+                return RedirectToAction("Index");
+            }
+
+            return View(contato);
+        }
+        [HttpPost]
+        public IActionResult Alterar(ContatoModel contato)
+        {
+            _contatoRepositorio.Atualziar(contato);
             return RedirectToAction("Index");
         }
     }
