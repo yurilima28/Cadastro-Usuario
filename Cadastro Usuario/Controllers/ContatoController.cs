@@ -53,8 +53,12 @@ namespace Cadastro_Usuario.Controllers
         [HttpPost]
         public IActionResult Alterar(ContatoModel contato)
         {
-            _contatoRepositorio.Atualziar(contato);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _contatoRepositorio.Atualziar(contato);
+                return RedirectToAction("Index");
+            }
+            return View("Editar", contato);
         }
     }
 }
