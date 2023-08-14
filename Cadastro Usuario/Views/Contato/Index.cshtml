@@ -2,25 +2,35 @@
 @{
     ViewData["Title"] = "Lista de Clientes";
 }
-<div class="text-center" >
+    <div class="text-center" >
     <div class="text-left">
         <a class="btn btn-primary" role="button" asp-controller="Contato" asp-action="Criar">Adicionar novo cliente</a>
 
     </div>
     <br />
 
-    <div class="alert alert-success" role="alert"> 
-     <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button> A alteração foi um sucesso </div>
+    @if(TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button> 
+            @TempData["MensagemSucesso"]
+        </div>
+        
+    }
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button> 
+            @TempData["MensagemErro"]
+        </div>
 
-    <div class="alert alert-danger" role="alert"> 
-        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button> Houve um erro na alterar
-    </div>
+    }
 
-
+    <br />
 
     <h1 class="display-4">Lista de clientes cadastrados</h1>
 
-    <table class="table">
+    <table class="table" id="table-contatos">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -51,7 +61,7 @@
                 }
             }
             
-            }
+            
 
         </tbody>
     </table>

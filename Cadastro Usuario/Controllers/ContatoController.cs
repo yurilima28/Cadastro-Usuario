@@ -34,31 +34,72 @@ namespace Cadastro_Usuario.Controllers
 
         public IActionResult Apagar(int id)
         {
-            _contatoRepositorio.Apagar(id);
-            return RedirectToAction("Index");
+            try
+            {
+               bool apagado = _contatoRepositorio.Apagar(id);
+
+                if(apagado)
+                {
+                    TempData["MensagemSucesso"] = "Cliente apagado com sucesso";
+                }
+                else
+                {
+                    TempData["MensagemErro"] = "Houve um erro ao tentar apagar o cliente";
+
+                }
+                return RedirectToAction("Index");
+            }
+            catch (System.Exception erro)
+            {
+                TempData["MensagemErro"] = $"Houve um erro ao apagar o cliente, detalhe do erro:{erro.Message}";
+                return RedirectToAction("Index");
+
+            }
         }
 
 
         [HttpPost]
         public IActionResult Criar(ContatoModel contato)
-        { 
-            if(ModelState.IsValid)
+        {
+            try
             {
-                _contatoRepositorio.Adicionar(contato);
+                if (ModelState.IsValid)
+                {
+                    _contatoRepositorio.Adicionar(contato);
+                    TempData["MensagemSucesso"] = "Cliente cadastrado com sucesso";
+                    return RedirectToAction("Index");
+                }
+
+                return View(contato);
+
+            }
+            catch (System.Exception erro)
+            {
+
+                TempData["MensagemErro"] = $"Houve um erro ao cadastrar o cliente, detalhe do erro:{erro.Message}";
                 return RedirectToAction("Index");
             }
-
-            return View(contato);
         }
         [HttpPost]
         public IActionResult Alterar(ContatoModel contato)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _contatoRepositorio.Atualziar(contato);
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    _contatoRepositorio.Atualziar(contato);
+                    TempData["MensagemSucesso"] = "Cliente alterado com sucesso";
+                    return RedirectToAction("Index");
+                }
+                return View("Editar", contato);
+
             }
-            return View("Editar", contato);
+            catch (System.Exception erro)
+            {
+                TempData["MensagemErro"] = $"Houve um erro ao alterar o cadastro: {erro.Message}";
+                return RedirectToAction("Index");
+               
+            }
         }
     }
 }
