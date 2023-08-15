@@ -16,7 +16,7 @@ namespace Cadastro_Usuario.Repositorio
 
         public ContatoModel ListarPorId(int id)
         {
-            return _context.Clientes.FirstOrDefault(x => x.Id ==id);
+            return _context.Clientes.FirstOrDefault(x => x.Id == id);
         }
 
         public List<ContatoModel> BuscarTodos()
@@ -26,7 +26,7 @@ namespace Cadastro_Usuario.Repositorio
 
         public ContatoModel Adicionar(ContatoModel contato)
         {
-           _context.Clientes.Add(contato);
+            _context.Clientes.Add(contato);
             _context.SaveChanges();
             return contato;
         }
@@ -35,7 +35,7 @@ namespace Cadastro_Usuario.Repositorio
         {
             ContatoModel contatoDB = ListarPorId(contato.Id);
 
-            if(contatoDB == null) throw new System.Exception("Houve um erro na atualização do cliente");
+            if (contatoDB == null) throw new System.Exception("Houve um erro na atualização do cliente");
 
             contatoDB.Nome = contato.Nome;
             contatoDB.Email = contato.Email;
@@ -51,8 +51,8 @@ namespace Cadastro_Usuario.Repositorio
         {
             ContatoModel contatoDB = ListarPorId(id);
 
-            if (contatoDB == null) throw new System.Exception("Houve um erro na deleção do cliente!");  
-            
+            if (contatoDB == null) throw new System.Exception("Houve um erro na deleção do cliente!");
+
             _context.Clientes.Remove(contatoDB);
             _context.SaveChanges();
             return true;

@@ -27,7 +27,10 @@ namespace Cadastro_Usuario
         {
             services.AddControllersWithViews();
             services.AddEntityFrameworkSqlServer().AddDbContext<BancoContext>(O =>O.UseSqlServer(Configuration.GetConnectionString("DataBase")));
+
             services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
+            services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
+
 
         }
 
