@@ -7,10 +7,10 @@ namespace Cadastro_Usuario.Repositorio
     {
         
         List<UsuarioModel> BuscarTodos();
-        UsuarioModel ListarPorId(int id);
+        UsuarioModel BuscarPorID(int id);
         UsuarioModel Adicionar (UsuarioModel usuario);
         UsuarioModel Atualizar(UsuarioModel usuario);
-        bool Apagar(int id);
+        bool Apagar (int id);
     }
 }
 

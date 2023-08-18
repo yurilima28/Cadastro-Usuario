@@ -7,7 +7,7 @@ namespace Cadastro_Usuario.Repositorio
     {
         // Parametro de entrada int id 
         List<ContatoModel> BuscarTodos();
-        ContatoModel ListarPorId(int id);
+        ContatoModel BuscarPorID(int id);
         ContatoModel Adicionar (ContatoModel contato);
         ContatoModel Atualziar(ContatoModel contato);
         bool Apagar(int id);

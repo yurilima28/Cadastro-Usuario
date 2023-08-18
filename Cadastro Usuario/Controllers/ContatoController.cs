@@ -23,12 +23,12 @@ namespace Cadastro_Usuario.Controllers
         }
         public IActionResult Editar(int id)
         {
-           ContatoModel contato = _contatoRepositorio.ListarPorId(id);
+           ContatoModel contato = _contatoRepositorio.BuscarPorID(id);
             return View(contato);
         }
         public IActionResult ApagarConfirmacao(int id)
         {
-            ContatoModel contato = _contatoRepositorio.ListarPorId(id);
+            ContatoModel contato = _contatoRepositorio.BuscarPorID(id);
             return View(contato);
         }
 
@@ -81,13 +81,13 @@ namespace Cadastro_Usuario.Controllers
             }
         }
         [HttpPost]
-        public IActionResult Alterar(ContatoModel contato)
+        public IActionResult Editar (ContatoModel contato)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _contatoRepositorio.Atualziar(contato);
+                   contato = _contatoRepositorio.Atualziar(contato);
                     TempData["MensagemSucesso"] = "Cliente alterado com sucesso";
                     return RedirectToAction("Index");
                 }

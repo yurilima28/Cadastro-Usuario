@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ContatoModel
+@{
     ViewData["Title"] = "Confirmação apagar contato";
 }
 
@@ -7,5 +8,6 @@
 
 </div>
 
-<a class="btn btn-primary btn-block" role="button" asp-controller="Contato" asp-action="Index">Cancelar exclusão</a>
-<a class="btn btn-danger btn-block" role="button" asp-controller="Contato" asp-action="Apagar" asp-route-id="@Model.Id">Confirmar exclusão</a>
+
+<a class="btn btn-primary btn-block" asp-action="Index" asp-controller="Contato" role="button">Cancelar exclusão </a>
+<a class="btn btn-danger btn-block" asp-action="Apagar" asp-controller="Contato" asp-route-id="Model.Id" role="button">Confirmar exclusão</a>

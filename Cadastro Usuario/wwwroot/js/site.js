@@ -5,7 +5,7 @@
 
 $(document).ready(function () {
     getDatatable('#table-contatos');
-    getDatatable('#table-usuario');
+    getDatatable('#table-usuarios');
 })
 
 function getDatatable(id) {
@@ -38,8 +38,6 @@ function getDatatable(id) {
         }
     });
 }
-
-
 $('.close-alert').click(function () {
     $(".alert").hide('hide');
 });

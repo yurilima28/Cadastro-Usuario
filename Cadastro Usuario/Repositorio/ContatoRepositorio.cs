@@ -14,7 +14,7 @@ namespace Cadastro_Usuario.Repositorio
             this._context = bancoContext;
         }
 
-        public ContatoModel ListarPorId(int id)
+        public ContatoModel BuscarPorID(int id)
         {
             return _context.Clientes.FirstOrDefault(x => x.Id == id);
         }
@@ -33,7 +33,7 @@ namespace Cadastro_Usuario.Repositorio
 
         public ContatoModel Atualziar(ContatoModel contato)
         {
-            ContatoModel contatoDB = ListarPorId(contato.Id);
+            ContatoModel contatoDB = BuscarPorID(contato.Id);
 
             if (contatoDB == null) throw new System.Exception("Houve um erro na atualização do cliente");
 
@@ -49,7 +49,7 @@ namespace Cadastro_Usuario.Repositorio
 
         public bool Apagar(int id)
         {
-            ContatoModel contatoDB = ListarPorId(id);
+            ContatoModel contatoDB = BuscarPorID(id);
 
             if (contatoDB == null) throw new System.Exception("Houve um erro na deleção do cliente!");
 
