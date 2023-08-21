@@ -10,9 +10,14 @@ namespace Cadastro_Usuario.Repositorio
     public class UsuarioRepositorio : IUsuarioRepositorio
     {
         private readonly BancoContext _context;
+
         public UsuarioRepositorio(BancoContext bancoContext)
         {
             this._context = bancoContext;
+        }
+        public UsuarioModel BuscarPorLogin(string login)
+        {
+            return _context.Usuarios.FirstOrDefault(x => x.Login.ToUpper() == login.ToUpper());
         }
 
         public UsuarioModel BuscarPorID(int id)
@@ -62,5 +67,7 @@ namespace Cadastro_Usuario.Repositorio
             return true;
 
         }
+
+       
     }
 }

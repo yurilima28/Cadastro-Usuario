@@ -1,7 +1,9 @@
 using Cadastro_Usuario.Data;
+using Cadastro_Usuario.Helper;
 using Cadastro_Usuario.Repositorio;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,9 +30,17 @@ namespace Cadastro_Usuario
             services.AddControllersWithViews();
             services.AddEntityFrameworkSqlServer().AddDbContext<BancoContext>(O =>O.UseSqlServer(Configuration.GetConnectionString("DataBase")));
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+
             services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
             services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
-
+            services.AddScoped<ISessao, Sessao>();
+            services.AddSession(o =>
+            { 
+                o.Cookie.HttpOnly = true;
+                o.Cookie.IsEssential = true;
+            });
 
         }
 
@@ -50,6 +60,8 @@ namespace Cadastro_Usuario
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
