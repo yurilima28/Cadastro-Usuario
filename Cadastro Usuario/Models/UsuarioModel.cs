@@ -32,6 +32,11 @@ namespace Cadastro_Usuario.Models
              {
                 Senha = Senha.GerarHash();
              }
+            
+             public void SetNovaSenha(string novaSenha)
+              {
+                Senha = novaSenha.GerarHash();
+              }
                 
             public string GerarNovaSenha()
             {
