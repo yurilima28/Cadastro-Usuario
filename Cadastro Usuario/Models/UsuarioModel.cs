@@ -1,6 +1,7 @@
 ﻿using Cadastro_Usuario.Enums;
 using System.ComponentModel.DataAnnotations;
 using System;
+using Cadastro_Usuario.Helper;
 
 namespace Cadastro_Usuario.Models
 {
@@ -21,11 +22,23 @@ namespace Cadastro_Usuario.Models
             public DateTime DataCadastro { get; set; }
             public DateTime? DataAtualizacao { get; set; }
 
+
             public bool SenhaValida(string senha)
             {
-                return  Senha == senha;
-
+                return Senha == senha.GerarHash();
+            }
+    
+            public void SetSenhaHash()
+             {
+                Senha = Senha.GerarHash();
              }
+                
+            public string GerarNovaSenha()
+            {
+                string novaSenha = Guid.NewGuid().ToString().Substring(0, 8);
+                Senha = novaSenha.GerarHash();
+                return novaSenha;
+            }
 
     }
 }

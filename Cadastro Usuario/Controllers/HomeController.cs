@@ -1,4 +1,5 @@
-﻿using Cadastro_Usuario.Models;
+﻿using Cadastro_Usuario.Filters;
+using Cadastro_Usuario.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Cadastro_Usuario.Controllers
 {
+    [PaginaParaUsuarioLogado]
     public class HomeController : Controller
     {
        
