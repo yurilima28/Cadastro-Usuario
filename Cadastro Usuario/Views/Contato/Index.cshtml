@@ -43,7 +43,7 @@
         <tbody>
             @if(Model != null && Model.Any())
             {
-                foreach (ContatoModel contato in Model)
+                foreach (var contato in Model)
                 {
                      <tr>
                 <th scope="row">@contato.Id</th>

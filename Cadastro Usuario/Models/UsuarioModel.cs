@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System;
 using Cadastro_Usuario.Helper;
+using System.Collections.Generic;
 
 namespace Cadastro_Usuario.Models
 {
@@ -21,7 +22,7 @@ namespace Cadastro_Usuario.Models
             public string Senha { get; set; }
             public DateTime DataCadastro { get; set; }
             public DateTime? DataAtualizacao { get; set; }
-
+            public virtual List<ContatoModel> Contatos { get; set; }
 
             public bool SenhaValida(string senha)
             {
@@ -47,3 +48,4 @@ namespace Cadastro_Usuario.Models
 
     }
 }
+    

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Cadastro_Usuario.Repositorio;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cadastro_Usuario.Repositorio
 {
@@ -31,7 +32,9 @@ namespace Cadastro_Usuario.Repositorio
 
         public List<UsuarioModel> BuscarTodos()
         {
-            return _context.Usuarios.ToList();
+            return _context.Usuarios
+                .Include(x => x.Contatos)
+                .ToList();
         }
 
         public UsuarioModel Adicionar(UsuarioModel usuario)

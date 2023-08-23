@@ -39,6 +39,7 @@
                 <th scope="col">Login</th>
                 <th scope="col">Email</th>
                 <th scope="col">Perfil</th>
+                <th scope="col">Total de Clientes</th>     
                 <th scope="col">Data de cadastro</th>
                 <th scope="col"></th>
             </tr>
@@ -55,6 +56,12 @@
                         <td>@usuario.Email</td>  
                         <td>@(usuario.Perfil == Cadastro_Usuario.Enums.PerfilEnum.Admin ? "Administrador": "Padrão")</td>
                         <td>@usuario.DataCadastro</td>
+                        <td> 
+                                <a href="javascript:" usuario-id="@usuario.Id" class="btn btn-success btn-sm btn-total-clientes">              
+                                @(usuario.Contatos != null && usuario.Contatos.Any() ? usuario.Contatos.Count(): 0 )
+                                </a> 
+                       </td>
+                        
                         
                         <td>
                             <div class="btn-group" role="group">
@@ -70,4 +77,26 @@
                 <tr class="odd"><td valign="top" colspan="5">Nenhum usuário encontrado</td></tr>
             }
         </tbody>
-    </table>
+        </table>
+
+
+        <div id="modalContatosUsuario" class="modal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Lista de usuários</h5>
+                        <button type="button" clasts="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div id="listaContatosUsuario"> </div>
+
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+  </div>

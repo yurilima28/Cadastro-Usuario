@@ -1,4 +1,5 @@
-﻿@model UsuarioModel
+﻿
+@model UsuarioModel
 
 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Olá, @Model.Nome</a>
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -11,18 +12,20 @@
             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Página Inicial</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Contato" asp-action="Index">Lista de Clientes</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Contato" asp-action="Index">Contatos</a>
         </li>
+
         @if (Model.Perfil == Cadastro_Usuario.Enums.PerfilEnum.Admin)
         {
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Index">Usuários</a>
             </li>
-
         }
+
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-controller="AlterarSenha" asp-action="Index">Alterar Senha</a>
         </li>
+
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Sair">Sair</a>
         </li>

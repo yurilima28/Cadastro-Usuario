@@ -1,4 +1,5 @@
 ﻿using Cadastro_Usuario.Filters;
+using Cadastro_Usuario.Helper;
 using Cadastro_Usuario.Models;
 using Cadastro_Usuario.Repositorio;
 using Microsoft.AspNetCore.Mvc;
@@ -10,13 +11,16 @@ namespace Cadastro_Usuario.Controllers
     public class ContatoController : Controller
     {
         private readonly IContatoRepositorio _contatoRepositorio;
-        public ContatoController(IContatoRepositorio contatoRepositorio)
+        private readonly ISessao _sessao;
+        public ContatoController(IContatoRepositorio contatoRepositorio, ISessao sessao)
         {
             _contatoRepositorio = contatoRepositorio;
+            _sessao = sessao;
         }
         public IActionResult Index()
         {
-           List<ContatoModel> contatos =  _contatoRepositorio.BuscarTodos();
+           UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
+           List<ContatoModel> contatos =  _contatoRepositorio.BuscarTodos(usuarioLogado.Id);
             return View(contatos);
         }
         public IActionResult Criar()
@@ -67,7 +71,10 @@ namespace Cadastro_Usuario.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _contatoRepositorio.Adicionar(contato);
+                    UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
+                    contato.UsuarioId = usuarioLogado.Id;
+
+                    contato = _contatoRepositorio.Adicionar(contato);
                     TempData["MensagemSucesso"] = "Cliente cadastrado com sucesso";
                     return RedirectToAction("Index");
                 }

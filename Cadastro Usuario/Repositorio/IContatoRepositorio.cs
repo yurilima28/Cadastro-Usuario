@@ -6,7 +6,7 @@ namespace Cadastro_Usuario.Repositorio
     public interface IContatoRepositorio
     {
         // Parametro de entrada int id 
-        List<ContatoModel> BuscarTodos();
+        List<ContatoModel> BuscarTodos(int usuarioId);
         ContatoModel BuscarPorID(int id);
         ContatoModel Adicionar (ContatoModel contato);
         ContatoModel Atualziar(ContatoModel contato);

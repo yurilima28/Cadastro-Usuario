@@ -64,7 +64,7 @@ namespace Cadastro_Usuario.Migrations
                     b.Property<string>("Login")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Perfil")

@@ -18,10 +18,10 @@ namespace Cadastro_Usuario.Repositorio
         {
             return _context.Clientes.FirstOrDefault(x => x.Id == id);
         }
-
-        public List<ContatoModel> BuscarTodos()
+        
+        public List<ContatoModel> BuscarTodos(int usuarioId)
         {
-            return _context.Clientes.ToList();
+            return _context.Clientes.Where(x => x.UsuarioId ==  usuarioId).ToList();
         }
 
         public ContatoModel Adicionar(ContatoModel contato)
